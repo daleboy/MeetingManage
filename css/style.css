@@ -1,0 +1,39 @@
+@charset "utf-8";
+
+body {font-size:80%; font-family:"Microsoft Yahei"; background-color:#e4e8e8; background: url(../images/body_bg.png) repeat-x #ddf1f3;}
+
+*{ padding:0px;margin:0px;}
+
+ul,li{ list-style-type:none;}
+
+img{ vertical-align:middle; border:0px; }
+
+a,a:link,a:visited{ text-decoration:none; color:#0e6ab7;}
+
+a:hover,a:active{ text-decoration:underline; color:#F60;}
+
+.header{ width:100%; height:89px; background:url(../images/header_bg.png) repeat-x; }
+
+.top{ height:89px; background:url(../images/logo_bg.png) no-repeat left;}
+
+.logo{ float:left; padding-left:30px; width:89px; line-height:89px; z-index:99;}
+
+.top_right{ float:right; width:auto; height:89px; z-index:1; }
+
+.top_right .top_suv{ float:right; height:40px; padding-top:19px;}
+
+.top_right .top_name{ width:600px; height:30px; line-height:28px;background:url(../images/top_rightbg.png) no-repeat; clear:both; color:#1a577e; font-weight:600; font-size:90%;}
+
+.top_name .left{ width:400px; height:30px; padding:0px 0px 0px 40px; background:url(../images/top_solid.png) no-repeat right; float:left;}
+
+.top_name .left li{ float:left; padding-right:20px;}
+
+.top_name .right{ width:150px; height:30px; float:right}
+
+.menu{ padding-left:80px; padding-right:80px;}
+
+.show_num{width: 45px; height: 28px; color: white; position: absolute; background: url('../images/xx_bg.png') no-repeat;}
+
+.content{ width:100%; text-align:center; color:#323230; font-size:140%; margin-top:50px;}
+.content li{ float:left; width:250px; padding-bottom:40px;}
+.content img{ padding-bottom:10px;}
