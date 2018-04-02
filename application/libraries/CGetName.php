@@ -1,14 +1,15 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class CGetName extends CI_Model {
+class CGetName {
 
+    private $CI;
     private $portal;
 
     public function __construct()
     {
-        parent::__construct();
-        $this->portal = $this->load->database('portal', TRUE);
+        $this->CI =& get_instance();
+        $this->portal = $this->CI->load->database('portal', TRUE);
     }
 
     //得到用户名称

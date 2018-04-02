@@ -45,23 +45,23 @@ class Meeting_setup_model extends CI_Model
     /* 技术保障类型设置开始 */
     public function GetTechnologyType()
     {
-        $query = $this->db->select('type_id, type_name, fjm')
+        $query = $this->db->select('type_id, type_name, fjm, style')
             ->where("del_flag = 0 AND (fjm = '{$_SESSION['court_fjm']}' OR fjm is null)")
             ->get('s_technology_type');
         return $query->result_array();
     }
 
-    public function AddTechnologyType($type_name)
+    public function AddTechnologyType($type_name, $style)
     {
-        if ($this->db->insert('s_technology_type', array('type_name' => $type_name, 'fjm' => $_SESSION['court_fjm'])))
+        if ($this->db->insert('s_technology_type', array('type_name' => $type_name, 'fjm' => $_SESSION['court_fjm'], 'style' => $style)))
             return 1;
         else
             return 0;
     }
 
-    public function ModifyTechnologyType($type_name, $type_id)
+    public function ModifyTechnologyType($type_name, $type_id, $style)
     {
-        if ($this->db->where('type_id', $type_id)->update('s_technology_type', array('type_name' => $type_name)))
+        if ($this->db->where('type_id', $type_id)->update('s_technology_type', array('type_name' => $type_name, 'style' => $style)))
             return 1;
         else
             return 0;

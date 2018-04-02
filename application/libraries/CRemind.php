@@ -49,7 +49,7 @@ class CRemind extends CI_Model {
         $sql = "INSERT INTO sms (FROM_ID, TO_ID, SMS_TYPE, CONTENT, SEND_TIME, REMIND_FLAG, NOTIFY_ID) VALUES ";
         foreach ($toIdArr as $toId)
         {
-            $sql .= "('{$fromId}', '{$toId}', '1', '" . iconv('UTF-8', 'GBK', $content) . "', '{$sendTime}', '1', {$eventId}),";
+            $sql .= "('{$fromId}', '{$toId}', '3', '" . iconv('UTF-8', 'GBK', $content) . "', '{$sendTime}', '1', {$eventId}),";
         }
         $sql = substr($sql, 0, -1);
         if ($message->query($sql))

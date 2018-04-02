@@ -57,7 +57,8 @@
                         <div class="panel-body">
                             <table class="table">
                                 <tr>
-                                    <th width="90%">技术保障类型名称</th>
+                                    <th width="80%">技术保障类型名称</th>
+                                    <th width="10%">样式</th>
                                     <th width="10%">操作</th>
                                 </tr>
                                 <tr id="add-modify-technology-type">

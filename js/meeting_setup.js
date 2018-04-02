@@ -9,10 +9,9 @@ $(function () {
  * 
  * 会议类型设置开始
  *
-**************************************************************************************/
+ **************************************************************************************/
 //获取已设置的会议类型
-function GetMeetingType()
-{
+function GetMeetingType() {
     MyAjax.request({
         url: projectUrl + 'MeetingSetup/GetMeetingType'
     }, function (data) {
@@ -21,8 +20,7 @@ function GetMeetingType()
             if (n.fjm != null) {
                 var delButton = '<span class="float-right tag bg-dot" onClick="DelMeetingType(' + n.type_id + ', \'' + n.type_name + '\')">删</span>' +
                     '<span class="float-right tag bg-yellow margin-right" onClick="ModifyMeetingType(' + n.type_id + ', \'' + n.type_name + '\')">改</span>';
-            }
-            else {
+            } else {
                 var delButton = '';
             }
             var li = '<li>' + delButton + (i + 1) + '. ' + n.type_name + '</li>';
@@ -32,24 +30,23 @@ function GetMeetingType()
 }
 
 //更改新增/修改会议类型窗口内容为添加会议类型
-function AddNewMeetingType()
-{
+function AddNewMeetingType() {
     var tr = '<td><input type="text" class="input" /></td>' +
         '<td><button class="button" onClick="AddMeetingTypeConfirm()">添加</button></td>';
     $('#add-modify-meeting-type').html(tr);
 }
 
 //点击新增/修改会议类型窗口内的新增按钮
-function AddMeetingTypeConfirm()
-{
+function AddMeetingTypeConfirm() {
     var typeName = $('#add-modify-meeting-type').find('td').eq(0).find('input').val();
     if ($.trim(typeName) == '') {
-        layer.alert('会议类型名称不能为空', { icon: 2 }, function (index) {
+        layer.alert('会议类型名称不能为空', {
+            icon: 2
+        }, function (index) {
             layer.close(index);
             $('#add-modify-meeting-type').find('td').eq(0).find('input').focus();
         });
-    }
-    else {
+    } else {
         MyAjax.request({
             url: projectUrl + 'MeetingSetup/AddMeetingType',
             data: {
@@ -64,17 +61,17 @@ function AddMeetingTypeConfirm()
                     $('#add-modify-meeting-type').find('td').eq(0).find('input').val('');
                     GetMeetingType();
                 });
-            }
-            else {
-                layer.alert('会议类型添加失败', { icon: 7 });
+            } else {
+                layer.alert('会议类型添加失败', {
+                    icon: 7
+                });
             }
         });
     }
 }
 
 //点击修改会议类型后更改新增/修改会议类型窗口内容为修改会议类型
-function ModifyMeetingType(typeId, typeName)
-{
+function ModifyMeetingType(typeId, typeName) {
     var tr = '<td><input type="text" class="input" value="' + typeName + '" /></td>' +
         '<td><button class="button" onClick="ModifyMeetingTypeConfirm(' + typeId + ')">修改</button></td>';
     $('#add-modify-meeting-type').html(tr);
@@ -85,16 +82,16 @@ function ModifyMeetingType(typeId, typeName)
 }
 
 //点击新增/修改会议类型窗口内的修改按钮
-function ModifyMeetingTypeConfirm(typeId)
-{
+function ModifyMeetingTypeConfirm(typeId) {
     var typeName = $('#add-modify-meeting-type').find('td').eq(0).find('input').val();
     if ($.trim(typeName) == '') {
-        layer.alert('会议类型名称不能为空', { icon: 2 }, function (index) {
+        layer.alert('会议类型名称不能为空', {
+            icon: 2
+        }, function (index) {
             layer.close(index);
             $('#add-modify-meeting-type').find('td').eq(0).find('input').focus();
         });
-    }
-    else {
+    } else {
         MyAjax.request({
             url: projectUrl + 'MeetingSetup/ModifyMeetingType',
             data: {
@@ -110,18 +107,20 @@ function ModifyMeetingTypeConfirm(typeId)
                     $('#add-modify-meeting-type').find('td').eq(0).find('input').val('');
                     GetMeetingType();
                 });
-            }
-            else {
-                layer.alert('会议类型修改失败', { icon: 7 });
+            } else {
+                layer.alert('会议类型修改失败', {
+                    icon: 7
+                });
             }
         });
     }
 }
 
 //删除会议类型
-function DelMeetingType(typeId, typeName)
-{
-    layer.confirm('确定删除' + typeName + '吗？', { icon: 3 }, function (index) {
+function DelMeetingType(typeId, typeName) {
+    layer.confirm('确定删除' + typeName + '吗？', {
+        icon: 3
+    }, function (index) {
         MyAjax.request({
             url: projectUrl + 'MeetingSetup/DelMeetingType',
             data: {
@@ -135,9 +134,10 @@ function DelMeetingType(typeId, typeName)
                 }, function () {
                     GetMeetingType();
                 });
-            }
-            else {
-                layer.alert('会议类型删除失败', { icon: 7 });
+            } else {
+                layer.alert('会议类型删除失败', {
+                    icon: 7
+                });
             }
         });
     });
@@ -147,7 +147,7 @@ function DelMeetingType(typeId, typeName)
  * 
  * 会议类型设置结束
  *
-**************************************************************************************/
+ **************************************************************************************/
 
 
 
@@ -155,7 +155,7 @@ function DelMeetingType(typeId, typeName)
  * 
  * 技术保障类型设置开始
  *
-**************************************************************************************/
+ **************************************************************************************/
 //获取已设置的技术保障类型
 function GetTechnologyType() {
     MyAjax.request({
@@ -166,16 +166,14 @@ function GetTechnologyType() {
             $.each(data, function (i, n) {
                 if (n.fjm != null) {
                     var delButton = '<span class="float-right tag bg-dot" onClick="DelTechnologyType(' + n.type_id + ', \'' + n.type_name + '\')">删</span>' +
-                        '<span class="float-right tag bg-yellow margin-right" onClick="ModifyTechnologyType(' + n.type_id + ', \'' + n.type_name + '\')">改</span>';
-                }
-                else {
+                        '<span class="float-right tag bg-yellow margin-right" onClick="ModifyTechnologyType(' + n.type_id + ', \'' + n.type_name + '\', \'' + n.style + '\')">改</span>';
+                } else {
                     var delButton = '';
                 }
                 var li = '<li>' + delButton + (i + 1) + '. ' + n.type_name + '</li>';
                 $('#technology-type-current-setup').append(li);
             });
-        }
-        else {
+        } else {
             $('#technology-type-current-setup').append('未有技术保障类型设置');
         }
     });
@@ -184,6 +182,8 @@ function GetTechnologyType() {
 //更改新增/修改技术保障类型窗口内容为添加技术保障类型
 function AddNewTechnologyType() {
     var tr = '<td><input type="text" class="input" /></td>' +
+        '<td><label><input type="radio" name="technology-type-style" value="checkbox" checked />复选框</label><br />' +
+        '<label><input type="radio" name="technology-type-style" value="text" />输入框</label></td>' +    
         '<td><button class="button" onClick="AddTechnologyTypeConfirm()">添加</button></td>';
     $('#add-modify-technology-type').html(tr);
 }
@@ -191,17 +191,20 @@ function AddNewTechnologyType() {
 //点击新增/修改技术保障类型窗口内的新增按钮
 function AddTechnologyTypeConfirm() {
     var typeName = $('#add-modify-technology-type').find('td').eq(0).find('input').val();
+    var style = $('#add-modify-technology-type').find('td').eq(1).find('input[type="radio"]:checked').val();
     if ($.trim(typeName) == '') {
-        layer.alert('技术保障类型名称不能为空', { icon: 2 }, function (index) {
+        layer.alert('技术保障类型名称不能为空', {
+            icon: 2
+        }, function (index) {
             layer.close(index);
             $('#add-modify-technology-type').find('td').eq(0).find('input').focus();
         });
-    }
-    else {
+    } else {
         MyAjax.request({
             url: projectUrl + 'MeetingSetup/AddTechnologyType',
             data: {
-                'typeName': typeName
+                'typeName': typeName,
+                'style': style
             }
         }, function (result) {
             if (result == 1) {
@@ -212,17 +215,22 @@ function AddTechnologyTypeConfirm() {
                     $('#add-modify-technology-type').find('td').eq(0).find('input').val('');
                     GetTechnologyType();
                 });
-            }
-            else {
-                layer.alert('技术保障类型添加失败', { icon: 7 });
+            } else {
+                layer.alert('技术保障类型添加失败', {
+                    icon: 7
+                });
             }
         });
     }
 }
 
 //点击修改技术保障类型后更改新增/修改技术保障类型窗口内容为修改技术保障类型
-function ModifyTechnologyType(typeId, typeName) {
+function ModifyTechnologyType(typeId, typeName, style) {
     var tr = '<td><input type="text" class="input" value="' + typeName + '" /></td>' +
+        '<td>' + 
+        '<label><input type="radio" name="technology-type-style" value="checkbox"' + (style == 'checkbox' ? 'checked' : '') + ' />复选框</label><br />' +
+        '<label><input type="radio" name="technology-type-style" value="text"' + (style == 'text' ? 'checked' : '') + ' />输入框</label>' +
+        '</td>' +
         '<td><button class="button" onClick="ModifyTechnologyTypeConfirm(' + typeId + ')">修改</button></td>';
     $('#add-modify-technology-type').html(tr);
     layer.tips('点此可返回添加模式', '#add-technology-type-link', {
@@ -234,18 +242,21 @@ function ModifyTechnologyType(typeId, typeName) {
 //点击新增/修改技术保障类型窗口内的修改按钮
 function ModifyTechnologyTypeConfirm(typeId) {
     var typeName = $('#add-modify-technology-type').find('td').eq(0).find('input').val();
+    var style = $('#add-modify-technology-type').find('td').eq(1).find('input[type="radio"]:checked').val();
     if ($.trim(typeName) == '') {
-        layer.alert('技术保障类型名称不能为空', { icon: 2 }, function (index) {
+        layer.alert('技术保障类型名称不能为空', {
+            icon: 2
+        }, function (index) {
             layer.close(index);
             $('#add-modify-technology-type').find('td').eq(0).find('input').focus();
         });
-    }
-    else {
+    } else {
         MyAjax.request({
             url: projectUrl + 'MeetingSetup/ModifyTechnologyType',
             data: {
                 'typeName': typeName,
-                'typeId': typeId
+                'typeId': typeId,
+                'style': style
             }
         }, function (result) {
             if (result == 1) {
@@ -256,9 +267,10 @@ function ModifyTechnologyTypeConfirm(typeId) {
                     $('#add-modify-technology-type').find('td').eq(0).find('input').val('');
                     GetTechnologyType();
                 });
-            }
-            else {
-                layer.alert('技术保障类型修改失败', { icon: 7 });
+            } else {
+                layer.alert('技术保障类型修改失败', {
+                    icon: 7
+                });
             }
         });
     }
@@ -266,7 +278,9 @@ function ModifyTechnologyTypeConfirm(typeId) {
 
 //删除技术保障类型
 function DelTechnologyType(typeId, typeName) {
-    layer.confirm('确定删除' + typeName + '吗？', { icon: 3 }, function (index) {
+    layer.confirm('确定删除' + typeName + '吗？', {
+        icon: 3
+    }, function (index) {
         MyAjax.request({
             url: projectUrl + 'MeetingSetup/DelTechnologyType',
             data: {
@@ -280,9 +294,10 @@ function DelTechnologyType(typeId, typeName) {
                 }, function () {
                     GetTechnologyType();
                 });
-            }
-            else {
-                layer.alert('技术保障类型删除失败', { icon: 7 });
+            } else {
+                layer.alert('技术保障类型删除失败', {
+                    icon: 7
+                });
             }
         });
     });
@@ -291,4 +306,4 @@ function DelTechnologyType(typeId, typeName) {
  * 
  * 技术保障类型设置结束
  *
-**************************************************************************************/
+ **************************************************************************************/
