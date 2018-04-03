@@ -30,11 +30,13 @@ class Meeting_safeguards_model extends CI_Model
                     $tValArr = explode('|', $tVal);
                     $data['technologyType'][] = $technologyName[$tValArr[0]] . '：' . (isset($tValArr[1]) ? '&emsp;' . $tValArr[1] : '&emsp;是');
                 }
+            } else {
+                $data['technologyType'] = array();
             }
             //承办部门、联系人、联系电话
-            $data['meetingCbbm'] = '';
-            $data['meetingLxr'] = '';
-            $data['meetingLxdh'] = '';
+            $data['meetingCbbm'] = '未填写';
+            $data['meetingLxr'] = '未填写';
+            $data['meetingLxdh'] = '未填写';
             if (!empty($systemJson->h)) {
                 $cbbmArr = explode('|', $systemJson->h);
                 $data['meetingCbbm'] = $cbbmArr[0];
@@ -50,9 +52,13 @@ class Meeting_safeguards_model extends CI_Model
                 $data['whetherSpeak1'] .= in_array('1', $whetherSpeakArr) ? '&emsp;是' : '&emsp;否';
                 $data['whetherSpeak2'] .= in_array('2', $whetherSpeakArr) ? '&emsp;是' : '&emsp;否';
                 $data['whetherSpeak3'] .= in_array('3', $whetherSpeakArr) ? '&emsp;是' : '&emsp;否';
+            } else {
+                $data['whetherSpeak1'] .= '&emsp;否';
+                $data['whetherSpeak2'] .= '&emsp;否';
+                $data['whetherSpeak3'] .= '&emsp;否';
             }
             //发言单位
-            $data['speakDept'] = empty($systemJson->j) ? '' : $systemJson->j;
+            $data['speakDept'] = empty($systemJson->j) ? '无' : $systemJson->j;
             //参加会议范围
             $data['meetingRange'] = array();
             if (!empty($systemJson->k)) {
@@ -69,6 +75,8 @@ class Meeting_safeguards_model extends CI_Model
                 if (in_array('4', $meetingRangeArr)) {
                     $data['meetingRange'][] = '其他';
                 }
+            } else {
+                $data['meetingRange'][] = '未填写';
             }
             //会议名称
             $data['meetingName'] = $systemJson->a;

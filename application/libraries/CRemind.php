@@ -16,15 +16,15 @@ class CRemind extends CI_Model {
     // <param name="subject">主题</param>
     // <param name="content">内容</param>
     // <returns>true或false</returns>
-    public function SendEmail($toIdArr, $subject, $content, $sendTime, $fromId = "paiqi@gxfy.com")
+    public function SendEmail($toIdArr, $subject, $content, $sendTime, $fromId = "paiqi")
     {
-        $fromId = substr($fromId, 0, strpos($fromId, '@'));
+        // $fromId = substr($fromId, 0, strpos($fromId, '@'));
         $email = $this->load->database('email', TRUE);
         $email->query("set character set 'gbk'");
         $sql = "INSERT INTO email (FROM_ID, TO_ID, TO_ID2, SUBJECT, CONTENT, SEND_TIME, READ_FLAG, SEND_FLAG, DELETE_FLAG, IMPORTANT) VALUES ";
         foreach ($toIdArr as $toId)
         {
-            $sql .= "('{$fromId}', '{$toId}', '{$toId},', '" . iconv('UTF-8', 'GBK', $subject) . "', '" . iconv('UTF-8', 'GBK', $content) . "', '{$sendTime}', 0, 1, 0, 1),";
+            $sql .= "('paiqi', '{$toId}', '{$toId},', '" . iconv('UTF-8', 'GBK', $subject) . "', '" . iconv('UTF-8', 'GBK', $content) . "', '{$sendTime}', 0, 1, 0, 1),";
         }
         $sql = substr($sql, 0, -1);
         if ($email->query($sql))
@@ -41,15 +41,15 @@ class CRemind extends CI_Model {
     // <param name="content">内容</param>
     // <param name="eventId">各系统的id字段</param>
     // <returns>true或false</returns>
-    public function SendMessage($toIdArr, $content, $eventId, $sendTime, $fromId = "paiqi@gxfy.com")
+    public function SendMessage($toIdArr, $content, $eventId, $sendTime, $fromId = "paiqi")
     {
-        $fromId = substr($fromId, 0, strpos($fromId, '@'));
+        // $fromId = substr($fromId, 0, strpos($fromId, '@'));
         $message = $this->load->database('sms', TRUE);
         $message->query("set character set 'gbk'");
         $sql = "INSERT INTO sms (FROM_ID, TO_ID, SMS_TYPE, CONTENT, SEND_TIME, REMIND_FLAG, NOTIFY_ID) VALUES ";
         foreach ($toIdArr as $toId)
         {
-            $sql .= "('{$fromId}', '{$toId}', '3', '" . iconv('UTF-8', 'GBK', $content) . "', '{$sendTime}', '1', {$eventId}),";
+            $sql .= "('paiqi', '{$toId}', '3', '" . iconv('UTF-8', 'GBK', $content) . "', '{$sendTime}', '1', {$eventId}),";
         }
         $sql = substr($sql, 0, -1);
         if ($message->query($sql))
@@ -65,7 +65,7 @@ class CRemind extends CI_Model {
     // <param name="mobile">收短信人手机号码</param>
     // <param name="content">内容</param>
     // <returns>插入sms2后返回的id</returns>
-    public function SendSms($mobileArr, $content, $sendTime, $task = 0, $fromId = "paiqi@gxfy.com")
+    public function SendSms($mobileArr, $content, $sendTime, $task = 0, $fromId = "paiqi")
     {
         $sms = $this->load->database('sms', TRUE);
         $sms->query("set character set 'gbk'");
@@ -74,7 +74,7 @@ class CRemind extends CI_Model {
         {
             if (!empty($mobile) && $mobile != '0')
             {
-                $sql .= "('{$fromId}', '{$mobile}', '" . iconv('UTF-8', 'GBK', $content) . "', '{$sendTime}', '{$task}'),";
+                $sql .= "('paiqi', '{$mobile}', '" . iconv('UTF-8', 'GBK', $content) . "', '{$sendTime}', '{$task}'),";
             }
         }
         $sql = substr($sql, 0, -1);
